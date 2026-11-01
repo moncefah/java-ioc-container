@@ -1,6 +1,5 @@
-package com.example.framework.corecontainer.core;
+package com.example.framework.corecontainer.ioc;
 
-import com.example.framework.corecontainer.context.Context;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,24 +7,20 @@ import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Core {
+public class ComponentScanner {
 
-    public Map<Class<?>, Object> beansBluePrint;
-    private Set<Class<?>> classes;
+    public Map<Class<?>, List<Annotation>>
+            annotationMetadataByClass = new HashMap<>();
 
-    public void luncher(Context context){
-        this.classes = getListOfAllClasses();
-        List<Annotation[]> x =  classes.stream()
-                                        .map(Class::getAnnotations)
-                                        .toList();
+
+    public void scan(){
+        var classes = getListOfAllClasses();
+        classes.forEach(clazz ->{
+            annotationMetadataByClass.put(clazz, getAnnotations(clazz));
+        });
     }
 
 
-    // work with a map for now cuz our Beans are singeloton only
-    private Map<Class<?>, Object> createBeansBluePrint(Set<Class> listOfClasses){
-
-        return null;
-    }
     private Set<Class<?>> getListOfAllClasses(){
         Set<Class<?>> classes = new HashSet<>();
         Package[] pa = Package.getPackages();
@@ -34,7 +29,6 @@ public class Core {
                 classes.addAll(getListOfClassesFromPackage(p.getName()));
             }
         }
-
         return classes;
     }
 
@@ -53,21 +47,13 @@ public class Core {
             return Class.forName(packageName + "."
                     + className.substring(0, className.lastIndexOf('.')));
         } catch (ClassNotFoundException e) {
-            // handle the exception
+            IO.println("No class found");
         }
         return null;
     }
-
-    private boolean hasCycle(){
-
-        return true;
+    private List<Annotation> getAnnotations(Class clazz){
+        return List.of(clazz.getAnnotations());
     }
 
-    private void printAnnotations(Class<?> clazz){
-            Arrays.stream(clazz.getAnnotations()).forEach(item -> {
-                String objectString = item.toString();
-                System.out.println("Item details: " + objectString);
-            });
-    }
 
 }

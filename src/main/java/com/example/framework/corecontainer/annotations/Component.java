@@ -9,6 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 
 public @interface Component {
-    public String name() default "";
     //id???? () int
 }

@@ -1,2 +1,9 @@
 i have to think how i'm gonna use git (some dude at work talked to me about git flow)
 and think to add gitignore
+
+MVP :
+1) create a MAP of classes and it annotaions
+2) instantiate these Classes :
+ 2.1) check for nested classes
+ 2.2) create the actual bean and place it in the Container
+3) some dude get beans from that container and inject them
