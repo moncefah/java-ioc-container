@@ -9,14 +9,13 @@ import java.util.stream.Collectors;
 
 public class ComponentScanner {
 
-    public Map<Class<?>, List<Annotation>>
-            annotationMetadataByClass = new HashMap<>();
+    public AnnotationMetadataByClass annotationMetadataByClass = new AnnotationMetadataByClass();
 
 
     public void scan(){
         var classes = getListOfAllClasses();
         classes.forEach(clazz ->{
-            annotationMetadataByClass.put(clazz, getAnnotations(clazz));
+            annotationMetadataByClass.appendClassMetaData(clazz);
         });
     }
 
@@ -25,7 +24,7 @@ public class ComponentScanner {
         Set<Class<?>> classes = new HashSet<>();
         Package[] pa = Package.getPackages();
         for (Package p : pa) {
-            if (p.getName().contains("com.example.framework")) {
+            if (p.getName().contains("com.example.framework.app")) {
                 classes.addAll(getListOfClassesFromPackage(p.getName()));
             }
         }
@@ -55,5 +54,7 @@ public class ComponentScanner {
         return List.of(clazz.getAnnotations());
     }
 
-
+    public AnnotationMetadataByClass getAnnotationMetadataByClass() {
+        return annotationMetadataByClass;
+    }
 }

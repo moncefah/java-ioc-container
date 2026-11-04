@@ -7,3 +7,6 @@ MVP :
  2.1) check for nested classes
  2.2) create the actual bean and place it in the Container
 3) some dude get beans from that container and inject them
+
+
+//List<Class<?>> -> to type

@@ -1,13 +1,20 @@
 package com.example.framework.corecontainer.ioc;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.example.framework.corecontainer.ioc.zpringbeans.Bean;
+
+import java.util.*;
 
 public class Container {
-    // a container is a Map of (k: class, v: Object)
-    private HashMap<Class<?>, Object> iocContainer;
+    private Set<Bean> iocContainer = new HashSet<>();
 
+    public Set<Bean> getIocContainer() {
+        return iocContainer;
+    }
 
-
+    public void setIocContainer(Set<Bean> iocContainer) {
+        this.iocContainer = iocContainer;
+    }
+    public void appendBean(Bean bean){
+        this.iocContainer.add(bean);
+    }
 }
