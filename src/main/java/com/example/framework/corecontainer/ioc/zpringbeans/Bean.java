@@ -1,12 +1,13 @@
 package com.example.framework.corecontainer.ioc.zpringbeans;
 
 public class Bean {
-    private final String className;
     private final int beanId;
-    private String beanName;
+    private final Object object;
+    private final String className;
 
-    public Bean(String className, int beanId) {
-        this.className = className;
+    public Bean(int beanId, Object object, String className ) {
         this.beanId = beanId;
+        this.object = object;
+        this.className = className;
     }
 }

@@ -1,13 +1,13 @@
 package com.example.framework.corecontainer.ioc;
 
-import com.example.framework.corecontainer.ioc.zpringbeans.BeanDefinition;
+import com.example.framework.corecontainer.ioc.zpringbeans.BeanDefinitionRegistry;
 
 public class AnnotationMetadataRegistry {
-    public final BeanDefinition beanDefinition;
+    public final BeanDefinitionRegistry beanDefinitionRegistry;
 
 
     public AnnotationMetadataRegistry(AnnotationMetadataByClass annotationMetadataByClass){
-        this.beanDefinition = new BeanDefinition(annotationMetadataByClass);
+        this.beanDefinitionRegistry = new BeanDefinitionRegistry(annotationMetadataByClass);
     }
 
 

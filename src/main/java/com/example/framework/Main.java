@@ -16,7 +16,13 @@ public class Main{
 
           UserService userService = new UserService();
           var configurableApplicationContext = new ConfigurableApplicationContext();
-          configurableApplicationContext.run();
+          try {
+              configurableApplicationContext.run();
+
+          }
+          catch (Exception _){
+              IO.println("Failed Start");
+          }
 
     }
 }

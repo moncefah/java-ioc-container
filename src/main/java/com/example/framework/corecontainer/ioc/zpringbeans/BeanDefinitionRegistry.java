@@ -6,18 +6,27 @@ import com.example.framework.corecontainer.ioc.AnnotationMetadataByClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeanDefinition {
+public class BeanDefinitionRegistry {
     private List<Class<?>> beanDefinitionList = new ArrayList<>();
-    public BeanDefinition(AnnotationMetadataByClass annotationMetadataByClass){
-       this.beanDefinitionList = annotationMetadataByClass.getClassesByPresentAnnotaion(Component.class);
-        printBeansDefinition();
+    public BeanDefinitionRegistry(AnnotationMetadataByClass annotationMetadataByClass){
+       populateBeanRegistry(annotationMetadataByClass);
+       printBeansDefinition();
     }
+    public void populateBeanRegistry(AnnotationMetadataByClass annotationMetadataByClass){
+        for (var clazz: annotationMetadataByClass.getClassesByPresentAnnotaion(Component.class)){
+            this.beanDefinitionList.add(clazz);
+        }
+    }
+
     public void printBeansDefinition(){
         for (var beanDefinition: beanDefinitionList){
             System.out.println(beanDefinition.toString());
         }
     }
 
+    public List<Class<?>> getBeanDefinitionList() {
+        return beanDefinitionList;
+    }
     // i have a class that holds registrys (R1, R2, R3) each one with it special method of creation
     // each registry has some specific details to get initiated
     // i want to call inside the constructor of the class that holds these registrie and it calls some how a method or a constructor of that Class that should handle that specif registry

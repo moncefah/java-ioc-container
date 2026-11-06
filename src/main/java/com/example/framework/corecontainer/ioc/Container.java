@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Container {
     private Set<Bean> iocContainer = new HashSet<>();
+    private static int idCounter = 0;
 
     public Set<Bean> getIocContainer() {
         return iocContainer;
@@ -15,6 +16,11 @@ public class Container {
         this.iocContainer = iocContainer;
     }
     public void appendBean(Bean bean){
+        idCounter++;
         this.iocContainer.add(bean);
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
     }
 }
