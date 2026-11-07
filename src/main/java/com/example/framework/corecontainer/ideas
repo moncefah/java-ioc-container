@@ -10,3 +10,7 @@ MVP :
 
 
 //List<Class<?>> -> to type
+
+// 2 PB :
+1) the classes are not loaded if they are called in main with new
+2) Repository and Service Annotaion i want them to extend Component (gotta be recursive)
